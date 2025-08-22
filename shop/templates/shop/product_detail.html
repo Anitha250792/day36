@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{ product.name }} • E-Shop{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-6">
+    <img class="img-fluid rounded" src="{{ product.image.url if product.image else 'https://picsum.photos/800/600?random='|add:product.id }}" alt="{{ product.name }}">
+  </div>
+  <div class="col-md-6">
+    <h2>{{ product.name }}</h2>
+    <p class="text-muted">{{ product.category.name }}</p>
+    <p>{{ product.description }}</p>
+    <h3 class="mb-3">₹ {{ product.price }}</h3>
+    <p><span class="badge text-bg-{{ product.stock|yesno:'success,danger' }}">{{ product.stock }} in stock</span></p>
+    <p class="small text-muted">Use the API to place orders (see docs below).</p>
+  </div>
+</div>
+{% endblock %}

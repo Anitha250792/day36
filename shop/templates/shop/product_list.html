@@ -1,0 +1,18 @@
+<div class="row">
+  {% for product in products %}
+  <div class="col-md-4 mb-4">
+    <div class="card h-100 shadow-sm">
+      {% if product.image %}
+        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+      {% else %}
+        <img src="https://picsum.photos/400/300?random={{ product.id }}" class="card-img-top" alt="{{ product.name }}">
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">{{ product.description|truncatewords:15 }}</p>
+        <p class="fw-bold text-success">₹{{ product.price }}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>

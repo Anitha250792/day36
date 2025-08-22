@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}My E-Shop{% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .navbar-brand { font-weight: 700; letter-spacing: .5px; }
+    .card-img-top { object-fit: cover; height: 180px; }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">E-Shop</a>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="nav">
+        <form class="d-flex ms-auto" role="search" method="get" action="/">
+          <input class="form-control me-2" type="search" name="q" placeholder="Search products..." value="{{ request.GET.q }}">
+          <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+        <ul class="navbar-nav ms-3">
+          {% if request.user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link disabled">Hi, {{ request.user.username }}</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-4">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="border-top py-4">
+    <div class="container small text-muted">
+      © {{ now|date:"Y" }} E-Shop • Built with Django & DRF
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
