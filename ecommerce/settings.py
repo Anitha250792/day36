@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "dev-secret-key-change-me"
 DEBUG = True
-ALLOWED_HOSTS = ["*"]  # tighten in production
+ALLOWED_HOSTS = ["https://day36.onrender.com/"]  # tighten in production
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -112,3 +112,4 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
+
